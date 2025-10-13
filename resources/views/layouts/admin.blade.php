@@ -15,7 +15,13 @@
 <script src="https://kit.fontawesome.com/9161014f5f.js" crossorigin="anonymous"></script>
 
 <!-- Styles -->
+<head>
+    ...
+    <wireui:scripts />
+    <script src="//unpkg.com/alpinejs" defer></script>
+</head>
 @livewireStyles
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
