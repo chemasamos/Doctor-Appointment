@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
 
         //Crear un usuario de prueba cada que ejecuto migrations
         User::factory()->create([
-            'name' => 'DavidFigV',
+            'name' => 'Chema Samos',
             'email' => 'chemasassss@gmail.com',
             'password' => bcrypt('13demayo')
         ]);
