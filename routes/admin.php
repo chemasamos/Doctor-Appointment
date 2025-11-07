@@ -3,9 +3,17 @@
 use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function (){
-   return view('admin.dashboard');
-})->name('dashboard');
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
 
-//Gestión dee Roles
-Route::resource('roles', RoleController::class);
+    // Panel principal del admin
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+
+    // Gestión de Roles
+    Route::resource('roles', RoleController::class);
+});
