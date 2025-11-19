@@ -30,8 +30,8 @@ class RoleTable extends DataTableComponent
                 }),
             Column::make("Acciones")
                 ->label(function ($row){
-                    return view('admin.roles.actions',
-                        ['role' => $row]);
+                    return view('admin.users.actions',
+                        ['user' => $row]);
                 })
 
         ];
