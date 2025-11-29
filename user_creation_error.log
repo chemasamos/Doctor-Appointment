@@ -1,0 +1,1 @@
+SQLSTATE[HY000]: General error: 1364 Field 'id_number' doesn't have a default value (Connection: mysql, SQL: insert into `users` (`name`, `email`, `password`, `updated_at`, `created_at`) values (Admin, admin@example.com, $2y$12$fy3b8j1WCIm7HYYUR2XxoOCRo4NwKL.nrV8Q3TQlazfpNbSGzDR1K, 2025-11-28 18:35:44, 2025-11-28 18:35:44))
