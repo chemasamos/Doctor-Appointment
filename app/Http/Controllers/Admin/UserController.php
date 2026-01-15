@@ -85,7 +85,7 @@ class UserController extends Controller
             'password' => 'nullable|string|confirmed|min:8',
             'phone' => 'required|digits_between:7,15',
             'address' => 'required|string|max:255',
-            'id_number' => 'required|string|min:5|max:20',
+            'id_number' => 'required|string|min:5|max:20|unique:users,id_number,' . $user->id,
             'role_id' => 'required|exists:roles,id',
         ]);
 
@@ -129,6 +129,9 @@ class UserController extends Controller
             ]);
             return redirect()->route('admin.users.index');
         }
+
+        // Desasociar roles antes de borrar (soft delete)
+        $user->syncRoles([]);
 
         $user->delete();
 

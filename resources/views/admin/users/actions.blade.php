@@ -3,12 +3,13 @@
         <i class="fa-solid fa-pen-to-square"></i>
     </x-wire-button>
 
-    <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="delete-form">
-        @csrf
-        @method('DELETE')
-        <x-wire-button type='submit' red xs>
-            <i class="fa-solid fa-trash"></i>
-        </x-wire-button>
-    </form>
-
+    @if($user->id !== auth()->id())
+        <form id="delete-form-{{ $user->id }}" action="{{ route('admin.users.destroy', $user) }}" method="POST" class="delete-form">
+            @csrf
+            @method('DELETE')
+            <x-wire-button type="button" red xs onclick="confirmDelete('delete-form-{{ $user->id }}')">
+                <i class="fa-solid fa-trash"></i>
+            </x-wire-button>
+        </form>
+    @endif
 </div>
