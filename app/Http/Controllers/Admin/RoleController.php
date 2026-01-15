@@ -122,36 +122,26 @@ class RoleController extends Controller
             session()->flash('swal', [
                 'icon' => 'error',
                 'title' => 'Error',
-                'text' => 'No puedes eliminar este rol'
+                'text' => 'No puedes eliminar este rol protegido.'
             ]);
             
             return redirect()->route('admin.roles.index');
         }
 
         try {
-            // Verificar si el rol tiene usuarios asignados usando la tabla model_has_roles
-            $usersCount = \DB::table('model_has_roles')
-                ->where('role_id', $role->id)
-                ->count();
-
-            if ($usersCount > 0) {
+            // Verificar usuarios asignados usando Eloquent (spatie relationship)
+            if ($role->users()->count() > 0) {
                 session()->flash('swal', [
                     'icon' => 'error',
                     'title' => 'No se puede eliminar',
-                    'text' => 'Este rol tiene ' . $usersCount . ' usuario(s) asignado(s). Debes reasignarlos antes de eliminarlo.'
+                    'text' => 'Este rol tiene ' . $role->users()->count() . ' usuario(s) asignado(s). Reasígnalos antes de eliminar.'
                 ]);
                 
                 return redirect()->route('admin.roles.index');
             }
 
-            // Guardar el nombre antes de eliminar
             $roleName = $role->name;
-
-            // Eliminar permisos asociados al rol
-            \DB::table('role_has_permissions')->where('role_id', $role->id)->delete();
-
-            // Eliminar el rol directamente de la base de datos
-            \DB::table('roles')->where('id', $role->id)->delete();
+            $role->delete(); // Elimina y cascadea permisos si está configurado, o simplemente borra el rol
 
             session()->flash('swal', [
                 'icon' => 'success',
@@ -160,10 +150,11 @@ class RoleController extends Controller
             ]);
 
         } catch (\Exception $e) {
+            \Log::error('Error eliminando rol: ' . $e->getMessage());
             session()->flash('swal', [
                 'icon' => 'error',
                 'title' => 'Error al eliminar',
-                'text' => 'Ocurrió un error al intentar eliminar el rol. Por favor, intenta nuevamente.'
+                'text' => 'Ocurrió un error inesperado al intentar eliminar el rol.'
             ]);
         }
 
