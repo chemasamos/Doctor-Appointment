@@ -4,7 +4,7 @@
     </x-wire-button>
 
     @if($user->id !== auth()->id())
-        <form id="delete-form-{{ $user->id }}" action="{{ route('admin.users.destroy', $user) }}" method="POST" class="delete-form">
+        <form id="delete-form-{{ $user->id }}" action="{{ route('admin.users.destroy', $user) }}" method="POST">
             @csrf
             @method('DELETE')
             <x-wire-button type="button" red xs onclick="confirmDelete('delete-form-{{ $user->id }}')">
