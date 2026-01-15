@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
+
 class UserController extends Controller
 {
     /**
@@ -21,7 +24,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::all();
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -29,7 +33,33 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // Funcionalidad pendiente
+        $data = $request->validate([
+            'name' => 'required|string|min:3|max:255',
+            'email' => 'required|string|email|unique:users',
+            'password' => 'required|string|confirmed|min:8',
+            'phone' => 'required|digits_between:7,15',
+            'address' => 'required|string|max:255',
+            'role_id' => 'required|exists:roles,id',
+        ]);
+
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'phone' => $data['phone'],
+            'address' => $data['address'],
+        ]);
+
+        $role = Role::findById($data['role_id']);
+        $user->assignRole($role);
+
+        session()->flash('swal', [
+            'icon' => 'success',
+            'title' => '¡Usuario creado!',
+            'text' => 'El usuario se ha creado correctamente.'
+        ]);
+
+        return redirect()->route('admin.users.index');
     }
 
     /**

@@ -12,53 +12,89 @@
       'name' => 'Crear'
     ],
 ]">
-    <div class="bg-white rounded-lg shadow-sm p-6 mt-4">
+    <x-wire-card class="mt-4">
         <form action="{{ route('admin.users.store') }}" method="POST">
             @csrf
             
-            <div class="mb-4">
-                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
-                    Nombre
-                </label>
-                <input type="text" 
-                       id="name" 
-                       name="name" 
-                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                       placeholder="Nombre completo">
-            </div>
+            <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <x-wire-input 
+                        name="name" 
+                        label="Nombre" 
+                        placeholder="Nombre completo"
+                        autocomplete="name"
+                        required
+                        value="{{ old('name') }}"
+                    />
 
-            <div class="mb-4">
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                    Email
-                </label>
-                <input type="email" 
-                       id="email" 
-                       name="email" 
-                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                       placeholder="correo@ejemplo.com">
-            </div>
+                    <x-wire-input 
+                        name="email" 
+                        label="Email" 
+                        placeholder="correo@ejemplo.com"
+                        type="email"
+                        autocomplete="email"
+                        required
+                        input-mode="email"
+                        value="{{ old('email') }}"
+                    />
+                </div>
 
-            <div class="mb-6">
-                <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-                    Contraseña
-                </label>
-                <input type="password" 
-                       id="password" 
-                       name="password" 
-                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                       placeholder="••••••••">
-            </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <x-wire-input 
+                        name="password" 
+                        label="Contraseña" 
+                        placeholder="Mínimo 8 caracteres"
+                        type="password"
+                        autocomplete="new-password"
+                        required
+                    />
 
-            <div class="flex justify-end space-x-3">
-                <a href="{{ route('admin.users.index') }}" 
-                   class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
-                    Cancelar
-                </a>
-                <button type="submit" 
-                        class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-                    Guardar
-                </button>
+                    <x-wire-input 
+                        name="password_confirmation" 
+                        label="Confirmar contraseña" 
+                        placeholder="Repite la contraseña"
+                        type="password"
+                        required
+                    />
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <x-wire-input 
+                        name="phone" 
+                        label="Teléfono" 
+                        placeholder="1234567890"
+                        type="tel"
+                        required
+                        input-mode="tel"
+                        value="{{ old('phone') }}"
+                    />
+
+                    <x-wire-input 
+                        name="address" 
+                        label="Dirección" 
+                        placeholder="Calle, Número, Colonia..."
+                        required
+                        value="{{ old('address') }}"
+                    />
+                </div>
+
+                <div class="space-y-1">
+                    <x-wire-native-select 
+                        label="Rol" 
+                        name="role_id" 
+                        placeholder="Seleccione un rol" 
+                        :options="$roles" 
+                        option-label="name" 
+                        option-value="id"
+                        required
+                    />
+                    <p class="text-xs text-gray-500">Define los permisos y accesos del usuario.</p>
+                </div>
+
+                <div class="flex justify-end">
+                    <x-wire-button type="submit" primary label="Guardar" />
+                </div>
             </div>
         </form>
-    </div>
+    </x-wire-card>
 </x-admin-layout>
