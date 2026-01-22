@@ -2,7 +2,7 @@
     //Arreglo de íconos
     $links = [
         [
-            'name' => 'Dashboard',
+            'name' => 'Panel',
             'icon' => 'fa-solid fa-gauge',
             'href' => route('admin.dashboard'),
             'active' => request()->routeIs('admin.dashboard'),

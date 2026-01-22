@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra un listado del recurso.
      */
     public function index()
     {
@@ -20,7 +20,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear un nuevo recurso.
      */
     public function create()
     {
@@ -29,7 +29,7 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena un recurso recién creado en el almacenamiento.
      */
     public function store(Request $request)
     {
@@ -52,7 +52,7 @@ class UserController extends Controller
             'id_number' => $data['id_number'],
         ]);
 
-        // Securely assign the role
+        // Asignar el rol de forma segura
         $role = Role::findById($data['role_id'], 'web');
         $user->syncRoles($role);
 
@@ -66,7 +66,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar el recurso especificado.
      */
     public function edit(User $user)
     {
@@ -75,7 +75,7 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza el recurso especificado en el almacenamiento.
      */
     public function update(Request $request, User $user)
     {
@@ -103,7 +103,7 @@ class UserController extends Controller
 
         $user->update($updateData);
 
-        // Sync role
+        // Sincronizar rol
         $role = Role::findById($data['role_id'], 'web');
         $user->syncRoles($role);
 
@@ -117,7 +117,7 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina el recurso especificado del almacenamiento.
      */
     public function destroy(User $user)
     {
@@ -126,6 +126,15 @@ class UserController extends Controller
                 'icon' => 'error',
                 'title' => 'Acción no válida',
                 'text' => 'No puedes eliminar tu propia cuenta.'
+            ]);
+            return redirect()->route('admin.users.index');
+        }
+
+        if ($user->id === 1) {
+            session()->flash('swal', [
+                'icon' => 'error',
+                'title' => 'Acción no válida',
+                'text' => 'No puedes eliminar al administrador principal.'
             ]);
             return redirect()->route('admin.users.index');
         }

@@ -28,7 +28,7 @@ class User extends Authenticatable
     protected $guard_name = 'web';
 
     /**
-     * The attributes that are mass assignable.
+     * Los atributos que son asignables masivamente.
      *
      * @var array<int, string>
      */
@@ -42,7 +42,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Los atributos que deben ocultarse para la serialización.
      *
      * @var array<int, string>
      */
@@ -54,7 +54,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The accessors to append to the model's array form.
+     * Los accesores que se deben adjuntar a la matriz de formulario del modelo.
      *
      * @var array<int, string>
      */
@@ -63,7 +63,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * Obtener los atributos que deben ser casteados.
      *
      * @return array<string, string>
      */
