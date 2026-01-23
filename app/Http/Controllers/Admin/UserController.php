@@ -139,6 +139,11 @@ class UserController extends Controller
             return redirect()->route('admin.users.index');
         }
 
+        // Verify if user has permission to delete (must be admin)
+        if (!auth()->user()->hasRole('admin')) {
+            abort(403, 'User does not have the right roles.');
+        }
+
         // Desasociar roles antes de borrar (soft delete)
         $user->syncRoles([]);
 
