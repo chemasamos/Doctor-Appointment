@@ -28,13 +28,6 @@ trait Queueable
     public $queue;
 
     /**
-     * The job "group" the job should be sent to.
-     *
-     * @var string|null
-     */
-    public $messageGroup;
-
-    /**
      * The number of seconds before the job should be made available.
      *
      * @var \DateTimeInterface|\DateInterval|array|int|null
@@ -105,21 +98,6 @@ trait Queueable
     public function onQueue($queue)
     {
         $this->queue = enum_value($queue);
-
-        return $this;
-    }
-
-    /**
-     * Set the desired job "group".
-     *
-     * This feature is only supported by some queues, such as Amazon SQS.
-     *
-     * @param  \UnitEnum|string  $group
-     * @return $this
-     */
-    public function onGroup($group)
-    {
-        $this->messageGroup = enum_value($group);
 
         return $this;
     }
@@ -226,9 +204,11 @@ trait Queueable
      */
     public function chain($chain)
     {
-        $this->chained = ChainedBatch::prepareNestedBatches(new Collection($chain))
-            ->map(fn ($job) => $this->serializeJob($job))
-            ->all();
+        $jobs = ChainedBatch::prepareNestedBatches(new Collection($chain));
+
+        $this->chained = $jobs->map(function ($job) {
+            return $this->serializeJob($job);
+        })->all();
 
         return $this;
     }
@@ -241,11 +221,9 @@ trait Queueable
      */
     public function prependToChain($job)
     {
-        $jobs = ChainedBatch::prepareNestedBatches(Collection::wrap($job));
+        $jobs = ChainedBatch::prepareNestedBatches(new Collection([$job]));
 
-        foreach ($jobs->reverse() as $job) {
-            $this->chained = Arr::prepend($this->chained, $this->serializeJob($job));
-        }
+        $this->chained = Arr::prepend($this->chained, $this->serializeJob($jobs->first()));
 
         return $this;
     }
@@ -258,11 +236,9 @@ trait Queueable
      */
     public function appendToChain($job)
     {
-        $jobs = ChainedBatch::prepareNestedBatches(Collection::wrap($job));
+        $jobs = ChainedBatch::prepareNestedBatches(new Collection([$job]));
 
-        foreach ($jobs as $job) {
-            $this->chained = array_merge($this->chained, [$this->serializeJob($job)]);
-        }
+        $this->chained = array_merge($this->chained, [$this->serializeJob($jobs->first())]);
 
         return $this;
     }

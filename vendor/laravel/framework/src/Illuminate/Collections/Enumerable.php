@@ -45,10 +45,9 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
      *
      * @param  int  $from
      * @param  int  $to
-     * @param  int  $step
      * @return static
      */
-    public static function range($from, $to, $step = 1);
+    public static function range($from, $to);
 
     /**
      * Wrap the given value in a collection if applicable.
@@ -1268,15 +1267,6 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
      * @return string
      */
     public function toJson($options = 0);
-
-    /**
-     * Get the collection of items as pretty print formatted JSON.
-     *
-     *
-     * @param  int  $options
-     * @return string
-     */
-    public function toPrettyJson(int $options = 0);
 
     /**
      * Get a CachingIterator instance.

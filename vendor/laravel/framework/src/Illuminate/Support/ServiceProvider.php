@@ -76,6 +76,7 @@ abstract class ServiceProvider
      * Create a new service provider instance.
      *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @return void
      */
     public function __construct($app)
     {
@@ -461,7 +462,7 @@ abstract class ServiceProvider
     /**
      * Register the package's custom Artisan commands.
      *
-     * @param  mixed  $commands
+     * @param  array|mixed  $commands
      * @return void
      */
     public function commands($commands)
