@@ -20,4 +20,7 @@ Route::middleware([
 
     // Gestión de Usuarios
     Route::resource('users', UserController::class);
+
+    // Gestión de Pacientes
+    Route::resource('patients', \App\Http\Controllers\Admin\PatientController::class)->only(['index', 'create', 'edit', 'update']);
 });

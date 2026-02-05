@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
         //LLamar al RoleSeeder creado
         $this->call([
             RoleSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            BloodTypeSeeder::class
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 use Spatie\Permission\Models\Role;
@@ -55,6 +56,23 @@ class UserController extends Controller
         // Asignar el rol de forma segura
         $role = Role::findById($data['role_id'], 'web');
         $user->syncRoles($role);
+
+        // Si el rol es Paciente, crear registro en tabla patients
+        if ($role->name === 'Paciente') {
+            Patient::create([
+                'user_id' => $user->id,
+                'blood_type_id' => null,
+                'allergies' => null,
+            ]);
+
+            session()->flash('swal', [
+                'icon' => 'success',
+                'title' => '¡Paciente creado!',
+                'text' => 'El paciente se ha creado correctamente. Por favor complete su información médica.'
+            ]);
+            
+            return redirect()->route('admin.patients.edit', $user->patient);
+        }
 
         session()->flash('swal', [
             'icon' => 'success',

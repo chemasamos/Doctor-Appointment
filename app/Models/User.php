@@ -24,6 +24,11 @@ class User extends Authenticatable
     use TwoFactorAuthenticatable;
     use HasRoles;
     use SoftDeletes;
+    
+    public function patient()
+    {
+        return $this->hasOne(Patient::class);
+    }
 
     protected $guard_name = 'web';
 
