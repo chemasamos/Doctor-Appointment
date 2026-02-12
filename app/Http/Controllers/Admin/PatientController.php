@@ -32,6 +32,47 @@ class PatientController extends Controller
      */
     public function edit(Patient $patient)
     {
-        return view('admin.patients.edit', compact('patient'));
+        // Cargar relación de usuario
+        $patient->load('user');
+        
+        // Obtener catálogo de tipos de sangre
+        $bloodTypes = \App\Models\BloodType::all();
+        
+        return view('admin.patients.edit', compact('patient', 'bloodTypes'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Patient $patient)
+    {
+        // Validar datos
+        $data = $request->validate([
+            'blood_type_id' => 'nullable|exists:blood_types,id',
+            'allergies' => 'nullable|string|min:3|max:255',
+            'chronic_conditions' => 'nullable|string|min:3|max:255',
+            'surgical_history' => 'nullable|string|min:3|max:255',
+            'family_history' => 'nullable|string|min:3|max:255',
+            'observations' => 'nullable|string|min:3|max:255',
+            'emergency_contact_name' => 'nullable|string|min:3|max:50',
+            'emergency_contact_relationship' => 'nullable|string|min:3|max:50',
+            'emergency_contact_phone' => 'nullable|string|min:14|max:14',
+        ]);
+        
+        // SANITIZAR teléfono: eliminar paréntesis, espacios y guiones
+        if (isset($data['emergency_contact_phone'])) {
+            $data['emergency_contact_phone'] = preg_replace('/[^0-9]/', '', $data['emergency_contact_phone']);
+        }
+        
+        // Actualizar paciente
+        $patient->update($data);
+        
+        // Redireccionar con mensaje de éxito
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'Paciente actualizado correctamente'
+        ]);
+        
+        return redirect()->route('admin.patients.edit', $patient);
     }
 }
