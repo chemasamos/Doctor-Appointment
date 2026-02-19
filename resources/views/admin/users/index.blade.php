@@ -17,7 +17,7 @@
     @livewire('admin.datatables.user-table')
 
     @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @push('scripts')
     <script>
         function confirmDelete(formId) {
             Swal.fire({
