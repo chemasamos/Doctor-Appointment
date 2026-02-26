@@ -9,9 +9,13 @@ class Speciality extends Model
 {
     use HasFactory;
 
+<<<<<<< HEAD
     protected $fillable = [
         'name',
     ];
+=======
+    protected $fillable = ['name'];
+>>>>>>> 33f65c76ac7969c0e806c7c2a92ab322b5558aa7
 
     public function doctors()
     {

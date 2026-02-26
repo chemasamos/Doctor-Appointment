@@ -6,7 +6,10 @@ use App\Models\Doctor;
 use App\Models\Speciality;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Hash;
+=======
+>>>>>>> 33f65c76ac7969c0e806c7c2a92ab322b5558aa7
 
 class DoctorSeeder extends Seeder
 {
@@ -15,6 +18,7 @@ class DoctorSeeder extends Seeder
      */
     public function run(): void
     {
+<<<<<<< HEAD
         // Doctor 1
         $user1 = User::firstOrCreate(
             ['email' => 'doctor1@example.com'],
@@ -62,5 +66,20 @@ class DoctorSeeder extends Seeder
                 'biography'              => 'Pediatra especializada en el cuidado integral de niños y adolescentes, con enfoque en medicina preventiva.',
             ]
         );
+=======
+        $users = User::all();
+
+        foreach ($users as $user) {
+            // Check if user already has a doctor record (although relationship is hasOne)
+            if (!Doctor::where('user_id', $user->id)->exists()) {
+                Doctor::create([
+                    'user_id' => $user->id,
+                    'speciality_id' => Speciality::inRandomOrder()->first()?->id,
+                    'medical_license_number' => null,
+                    'biography' => null,
+                ]);
+            }
+        }
+>>>>>>> 33f65c76ac7969c0e806c7c2a92ab322b5558aa7
     }
 }

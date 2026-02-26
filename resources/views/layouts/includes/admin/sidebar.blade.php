@@ -29,10 +29,17 @@
             'active' => request()->routeIs('admin.patients.*')
         ],
         [
+<<<<<<< HEAD
             'name'   => 'Doctores',
             'icon'   => 'fa-solid fa-user-md',
             'href'   => route('admin.doctors.index'),
             'active' => request()->routeIs('admin.doctors.*'),
+=======
+            'name' => 'Doctores',
+            'icon' => 'fa-solid fa-user-doctor',
+            'href' => route('admin.doctors.index'),
+            'active' => request()->routeIs('admin.doctors.*')
+>>>>>>> 33f65c76ac7969c0e806c7c2a92ab322b5558aa7
         ],
     ];
 @endphp
