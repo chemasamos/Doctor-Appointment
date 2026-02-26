@@ -23,4 +23,7 @@ Route::middleware([
 
     // Gestión de Pacientes
     Route::resource('patients', \App\Http\Controllers\Admin\PatientController::class)->only(['index', 'create', 'edit', 'update']);
+
+    // Gestión de Doctores
+    Route::resource('doctors', \App\Http\Controllers\Admin\DoctorController::class);
 });
