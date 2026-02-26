@@ -26,8 +26,7 @@ class DoctorTable extends DataTableComponent
     {
         return [
             Column::make('Id', 'id')
-                ->sortable()
-                ->searchable(),
+                ->sortable(),
 
             Column::make('Nombre', 'user.name')
                 ->sortable()

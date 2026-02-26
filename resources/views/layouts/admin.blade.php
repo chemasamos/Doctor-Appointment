@@ -45,7 +45,6 @@
 @stack('scripts')
 
 @livewireScripts
-@livewireScripts
 
 {{-- Mostrar Sweet Alert --}}
 @if (session('swal'))

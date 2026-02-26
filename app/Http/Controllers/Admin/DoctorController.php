@@ -70,7 +70,7 @@ class DoctorController extends Controller
             'message' => 'Doctor creado correctamente',
         ]);
 
-        return redirect()->route('admin.doctors.edit', $doctor);
+        return redirect()->route('admin.doctors.index');
     }
 
     /**
