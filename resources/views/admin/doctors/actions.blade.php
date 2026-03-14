@@ -9,8 +9,13 @@
         <i class="fa-solid fa-pen-to-square"></i>
     </x-wire-button>
 
+    {{-- Horarios --}}
+    <x-wire-button xs green href="{{ route('admin.doctors.schedules', $doctor) }}">
+        <i class="fa-solid fa-clock"></i>
+    </x-wire-button>
+
     {{-- Eliminar --}}
-    <form action="{{ route('admin.doctors.destroy', $doctor) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este doctor?')">
+    <form action="{{ route('admin.doctors.destroy', $doctor) }}" method="POST" onsubmit="return confirm('\u00bfEst\u00e1s seguro de que deseas eliminar este doctor?')">
         @csrf
         @method('DELETE')
         <x-wire-button xs red type="submit">

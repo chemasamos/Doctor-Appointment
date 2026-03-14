@@ -131,4 +131,13 @@ class DoctorController extends Controller
 
         return redirect()->route('admin.doctors.index');
     }
+
+    /**
+     * Show the schedules view for a doctor.
+     */
+    public function schedules(Doctor $doctor)
+    {
+        $doctor->load('user', 'speciality');
+        return view('admin.doctors.schedules', compact('doctor'));
+    }
 }

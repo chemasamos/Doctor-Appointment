@@ -34,6 +34,18 @@
             'href'   => route('admin.doctors.index'),
             'active' => request()->routeIs('admin.doctors.*'),
         ],
+        [
+            'name'   => 'Aseguradoras',
+            'icon'   => 'fa-solid fa-shield-halved',
+            'href'   => route('admin.insurances.index'),
+            'active' => request()->routeIs('admin.insurances.*'),
+        ],
+        [
+            'name'   => 'Citas médicas',
+            'icon'   => 'fa-solid fa-calendar-check',
+            'href'   => route('admin.appointments.index'),
+            'active' => request()->routeIs('admin.appointments.*'),
+        ],
     ];
 @endphp
 
