@@ -2273,16 +2273,16 @@
         },
         {
             "name": "laravel-lang/common",
-            "version": "6.7.2",
+            "version": "6.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/common.git",
-                "reference": "b2e3089c960106d053b47df3cc66497730130448"
+                "reference": "f1e3383f94c4f157f0f41324792382bf2dd84d52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/common/zipball/b2e3089c960106d053b47df3cc66497730130448",
-                "reference": "b2e3089c960106d053b47df3cc66497730130448",
+                "url": "https://api.github.com/repos/Laravel-Lang/common/zipball/f1e3383f94c4f157f0f41324792382bf2dd84d52",
+                "reference": "f1e3383f94c4f157f0f41324792382bf2dd84d52",
                 "shasum": ""
             },
             "require": {
@@ -2301,9 +2301,9 @@
             },
             "require-dev": {
                 "dragon-code/support": "^6.13",
-                "orchestra/testbench": "^8.17 || ^9.1.2 || ^10.0",
+                "orchestra/testbench": "^8.17 || ^9.1.2 || ^10.0 || ^11.0",
                 "phpunit/phpunit": "^10.5.20 || ^11.0 || ^12.0",
-                "symfony/var-dumper": "^6.4 || ^7.1.1"
+                "symfony/var-dumper": "^6.4 || ^7.1.1 || ^8.0"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2367,7 +2367,7 @@
                     "type": "yoomoney"
                 }
             ],
-            "time": "2026-01-14T22:00:53+00:00"
+            "time": "2026-03-17T23:15:14+00:00"
         },
         {
             "name": "laravel-lang/config",
@@ -3176,16 +3176,16 @@
         },
         {
             "name": "laravel-lang/publisher",
-            "version": "16.7.1",
+            "version": "16.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/publisher.git",
-                "reference": "b58d236ba3b5bebb4cfc87500b52f620ead4485b"
+                "reference": "e5d3383f5385c2102f8a0d3dbe488ed86cd0250f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/publisher/zipball/b58d236ba3b5bebb4cfc87500b52f620ead4485b",
-                "reference": "b58d236ba3b5bebb4cfc87500b52f620ead4485b",
+                "url": "https://api.github.com/repos/Laravel-Lang/publisher/zipball/e5d3383f5385c2102f8a0d3dbe488ed86cd0250f",
+                "reference": "e5d3383f5385c2102f8a0d3dbe488ed86cd0250f",
                 "shasum": ""
             },
             "require": {
@@ -3193,9 +3193,9 @@
                 "dragon-code/pretty-array": "^4.1",
                 "dragon-code/support": "^6.11.3",
                 "ext-json": "*",
-                "illuminate/collections": "^10.0 || ^11.0 || ^12.0",
-                "illuminate/console": "^10.0 || ^11.0 || ^12.0",
-                "illuminate/support": "^10.0 || ^11.0 || ^12.0",
+                "illuminate/collections": "^10.0 || ^11.0 || ^12.0 || ^13.0",
+                "illuminate/console": "^10.0 || ^11.0 || ^12.0 || ^13.0",
+                "illuminate/support": "^10.0 || ^11.0 || ^12.0 || ^13.0",
                 "laravel-lang/config": "^1.12",
                 "laravel-lang/locales": "^2.10",
                 "league/commonmark": "^2.4.1",
@@ -3209,7 +3209,7 @@
             },
             "require-dev": {
                 "laravel-lang/json-fallback": "^2.2",
-                "orchestra/testbench": "^8.14 || ^9.0 || ^10.0",
+                "orchestra/testbench": "^8.14 || ^9.0 || ^10.0 || ^11.0",
                 "phpunit/phpunit": "^10.4.2 || ^11.0 || ^12.0",
                 "symfony/var-dumper": "^6.3.6 || ^7.0"
             },
@@ -3280,7 +3280,7 @@
                     "type": "yoomoney"
                 }
             ],
-            "time": "2026-01-14T22:00:51+00:00"
+            "time": "2026-03-17T22:56:20+00:00"
         },
         {
             "name": "laravel-lang/routes",
