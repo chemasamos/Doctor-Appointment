@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('doctors', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->unique()->constrained()->cascadeOnDelete();
-            $table->foreignId('speciality_id')->constrained('specialities');
-            $table->string('medical_license_number', 50)->nullable();
-            $table->text('biography')->nullable();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('doctors')) {
+            Schema::create('doctors', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('user_id')->unique()->constrained()->cascadeOnDelete();
+                $table->foreignId('speciality_id')->constrained('specialities');
+                $table->string('medical_license_number', 50)->nullable();
+                $table->text('biography')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
