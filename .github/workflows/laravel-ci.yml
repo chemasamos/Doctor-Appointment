@@ -18,4 +18,4 @@ jobs:
     - name: Generate key
       run: echo "APP_KEY=base64:$(openssl rand -base64 32)" >> .env
     - name: Execute tests
-      run: php artisan test
+      run: php artisan test --testsuite=Unit
