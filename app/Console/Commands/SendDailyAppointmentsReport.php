@@ -33,7 +33,7 @@ class SendDailyAppointmentsReport extends Command
             ->whereDate('date', today())
             ->get();
 
-        $admin = User::role('admin')->first();
+        $admin = User::role('Administrador')->first();
         $adminEmail = $admin ? $admin->email : config('mail.from.address');
 
         Mail::to($adminEmail)->send(new DailyAppointmentsReport($appointments));

@@ -9,4 +9,6 @@ Artisan::command('inspire', function () {
 
 use Illuminate\Support\Facades\Schedule;
 
-Schedule::command('appointments:daily-report')->dailyAt('08:00');
+Schedule::command('appointments:daily-report')
+    ->dailyAt('17:26')
+    ->timezone('America/Mexico_City');

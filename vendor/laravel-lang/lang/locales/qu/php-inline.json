@@ -36,6 +36,7 @@
     "doesnt_end_with": "Kay chakraqa manam kaykunamanta hukninwanchu tukunan: :values.",
     "doesnt_start_with": "Kay chakraqa manam kaykunamanta hukninwanchu qallarina: :values.",
     "email": "Kay pampaqa allin correo electrónico nisqa kanan tiyan.",
+    "encoding": "Kay pampaqa :encoding nisqapi codificasqa kanan tiyan.",
     "ends_with": "Kay chakraqa kaykunamanta hukninwanmi tukunan: :values.",
     "enum": "Akllasqa pampaqa manam allinchu.",
     "exists": "Akllasqa pampaqa manam allinchu.",
