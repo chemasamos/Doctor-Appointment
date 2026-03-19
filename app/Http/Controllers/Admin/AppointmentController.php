@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Patient;
+use App\Mail\AppointmentConfirmation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -54,7 +56,11 @@ class AppointmentController extends Controller
         $end   = \Carbon\Carbon::createFromTimeString($validated['end_time']);
         $validated['duration'] = $start->diffInMinutes($end);
 
-        Appointment::create($validated);
+        $appointment = Appointment::create($validated);
+
+        $appointment->load(['patient.user', 'doctor.user', 'doctor.speciality']);
+        Mail::to($appointment->patient->user->email)
+            ->send(new AppointmentConfirmation($appointment));
 
         session()->flash('alert', ['type' => 'success', 'message' => 'Cita registrada exitosamente.']);
 
