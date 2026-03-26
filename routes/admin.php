@@ -34,6 +34,7 @@ Route::middleware([
     Route::resource('insurances', InsuranceController::class)->only(['index', 'create', 'store']);
 
     // Citas médicas
+    Route::get('appointments/export', [AppointmentController::class, 'export'])->name('appointments.export');
     Route::resource('appointments', AppointmentController::class)->only(['index', 'create', 'store']);
     Route::get('appointments/{appointment}/consult', [AppointmentController::class, 'consult'])->name('appointments.consult');
 

@@ -78,4 +78,9 @@ class AppointmentController extends Controller
 
         return view('admin.appointments.consult', compact('appointment'));
     }
+
+    public function export()
+    {
+        return \Maatwebsite\Excel\Facades\Excel::download(new \App\Exports\AppointmentsExport, 'citas_medicas.xlsx');
+    }
 }

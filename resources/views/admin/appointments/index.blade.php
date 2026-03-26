@@ -11,10 +11,16 @@
     ]">
 
     <x-slot name="action">
-        <x-wire-button blue href="{{ route('admin.appointments.create') }}">
-            <i class="fa-solid fa-plus mr-2"></i>
-            Nuevo
-        </x-wire-button>
+        <div class="flex space-x-2">
+            <x-wire-button green href="{{ route('admin.appointments.export') }}">
+                <i class="fa-solid fa-file-excel mr-2"></i>
+                Generar Excel
+            </x-wire-button>
+            <x-wire-button blue href="{{ route('admin.appointments.create') }}">
+                <i class="fa-solid fa-plus mr-2"></i>
+                Nuevo
+            </x-wire-button>
+        </div>
     </x-slot>
 
     {{-- Flash alert --}}
