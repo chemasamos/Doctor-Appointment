@@ -9,6 +9,9 @@
     ],
 ]">
     <x-slot name="action">
+        <x-wire-button green href="{{ route('admin.imports.index') }}" class="mr-2">
+            <i class="fa-solid fa-file-excel mr-2"></i> Importar Pacientes
+        </x-wire-button>
         <x-wire-button blue href="{{ route('admin.users.create')}}">
             <i class="fa-solid fa-plus"></i>
         </x-wire-button>
