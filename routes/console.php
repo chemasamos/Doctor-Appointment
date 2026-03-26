@@ -10,5 +10,5 @@ Artisan::command('inspire', function () {
 use Illuminate\Support\Facades\Schedule;
 
 Schedule::command('appointments:daily-report')
-    ->dailyAt('17:26')
+    ->dailyAt('09:43')
     ->timezone('America/Mexico_City');

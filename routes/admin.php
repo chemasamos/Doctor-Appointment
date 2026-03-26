@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\InsuranceController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ImportController;
 
 Route::middleware([
     'auth:sanctum',
@@ -38,4 +39,8 @@ Route::middleware([
 
     // Horarios de doctor
     Route::get('doctors/{doctor}/schedules', [\App\Http\Controllers\Admin\DoctorController::class, 'schedules'])->name('doctors.schedules');
+
+    // Importación masiva
+    Route::get('imports', [ImportController::class, 'index'])->name('imports.index');
+    Route::post('imports', [ImportController::class, 'store'])->name('imports.store');
 });

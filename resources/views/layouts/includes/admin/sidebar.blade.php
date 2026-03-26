@@ -29,6 +29,12 @@
             'active' => request()->routeIs('admin.patients.*')
         ],
         [
+            'name' => 'Importación',
+            'icon' => 'fa-solid fa-file-import',
+            'href' => route('admin.imports.index'),
+            'active' => request()->routeIs('admin.imports.*')
+        ],
+        [
             'name'   => 'Doctores',
             'icon'   => 'fa-solid fa-user-doctor',
             'href'   => route('admin.doctors.index'),
